@@ -121,6 +121,13 @@ $.extend($.fn, {
 		var element = this[ 0 ],
 			settings, staticRules, existingRules, data, param, filtered;
 
+        if (typeof element=="undefined") {
+            if ( $.validator.defaults.debug && window.console ) {
+                console.log("There is no element with ID "+this.selector);
+            }
+            return;
+        }
+
 		if ( command ) {
 			settings = $.data( element.form, "validator" ).settings;
 			staticRules = settings.rules;
